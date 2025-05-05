@@ -33,25 +33,25 @@ const GoalCard = ({ goal }: { goal: Goal }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-xl font-semibold mb-2">{goal.title}</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-2">{goal.title}</h2>
       <div className="w-full bg-gray-200 h-2 mb-4 rounded-full">
         <div
-          className="bg-blue-500 h-2 rounded-full"
+          className="bg-blue-600 h-2 rounded-full"
           style={{ width: `${goal.progress}%` }}
         ></div>
       </div>
-      <p className="text-gray-700 mb-4">{goal.progress}% completed</p>
-      <div className="text-sm text-gray-600 mb-4">
+      <p className="text-lg text-gray-800 mb-4">{goal.progress}% completed</p>
+      <div className="text-base text-gray-800 mb-4 leading-relaxed">
         <strong>Milestones:</strong>
-        <ul>
+        <ul className="list-disc list-inside">
           {goal.milestones.map((milestone, index) => (
             <li key={index}>✔️ {milestone}</li>
           ))}
         </ul>
       </div>
-      <div className="text-sm text-gray-600">
+      <div className="text-base text-gray-800 leading-relaxed">
         <strong>Comments:</strong>
-        <ul>
+        <ul className="list-disc list-inside">
           {goal.comments.map((comment, index) => (
             <li key={index}>📝 {comment}</li>
           ))}
@@ -65,14 +65,10 @@ const GoalCard = ({ goal }: { goal: Goal }) => {
 const Dashboard = ({ goals }: { goals: Goal[] }) => {
   return (
     <div className="p-6">
-      <h1 className="text-4xl font-bold mb-6">My Goals Dashboard</h1>
-      
-      {/* Goal Cards */}
+      <h1 className="text-4xl font-extrabold mb-6 text-gray-900">My Goals Dashboard</h1>
       {goals.map((goal) => (
         <GoalCard key={goal.id} goal={goal} />
       ))}
-
-      {/* Chart */}
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={mockChartData}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -83,7 +79,7 @@ const Dashboard = ({ goals }: { goals: Goal[] }) => {
           <Line
             type="monotone"
             dataKey="progress"
-            stroke="#8884d8"
+            stroke="#2563eb"
             activeDot={{ r: 8 }}
           />
         </LineChart>
@@ -125,13 +121,13 @@ const GoalForm = ({ addGoal }: { addGoal: (goal: Goal) => void }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-xl font-semibold mb-4">Add a New Goal</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-4">Add a New Goal</h2>
       <input
         type="text"
         placeholder="Goal Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full mb-4 p-2 border rounded"
+        className="w-full mb-4 p-3 border rounded text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
       <input
@@ -139,7 +135,7 @@ const GoalForm = ({ addGoal }: { addGoal: (goal: Goal) => void }) => {
         placeholder="Progress %"
         value={progress}
         onChange={(e) => setProgress(Number(e.target.value))}
-        className="w-full mb-4 p-2 border rounded"
+        className="w-full mb-4 p-3 border rounded text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
       <input
@@ -147,18 +143,18 @@ const GoalForm = ({ addGoal }: { addGoal: (goal: Goal) => void }) => {
         placeholder="Milestones (comma separated)"
         value={milestones}
         onChange={(e) => setMilestones(e.target.value)}
-        className="w-full mb-4 p-2 border rounded"
+        className="w-full mb-4 p-3 border rounded text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <input
         type="text"
         placeholder="Comments (comma separated)"
         value={comments}
         onChange={(e) => setComments(e.target.value)}
-        className="w-full mb-4 p-2 border rounded"
+        className="w-full mb-4 p-3 border rounded text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white p-2 rounded"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold p-3 rounded"
       >
         Add Goal
       </button>
@@ -175,13 +171,13 @@ const Page = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-50 min-h-screen text-gray-900">
       {/* Navbar */}
       <nav className="bg-blue-600 p-4 text-white">
         <ul className="flex space-x-6">
-          <li><a href="#" className="hover:underline">Home</a></li>
-          <li><a href="#dashboard" className="hover:underline">Dashboard</a></li>
-          <li><a href="#" className="hover:underline">Settings</a></li>
+          <li><a href="#" className="hover:underline font-medium">Home</a></li>
+          <li><a href="#dashboard" className="hover:underline font-medium">Dashboard</a></li>
+          <li><a href="#" className="hover:underline font-medium">Settings</a></li>
         </ul>
       </nav>
 
